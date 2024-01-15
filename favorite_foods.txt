@@ -3,4 +3,3 @@ jjajangmyeon
 a perfectly ripe mango
 another food
 another another food
-merge conflict local
