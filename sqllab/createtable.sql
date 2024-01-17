@@ -7,5 +7,6 @@ CREATE TABLE earthquakes (
   quakedepth real,
   mag real,
   id text,
+  updated time with time zone,
   place text
 );
