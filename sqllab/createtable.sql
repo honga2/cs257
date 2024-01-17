@@ -8,5 +8,4 @@ CREATE TABLE earthquakes (
   mag real,
   id text,
   place text,
-  quaketype text
 );
