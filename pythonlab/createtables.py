@@ -90,7 +90,7 @@ def test_query_all():
           longitude real
         );
     '''
-    cur.execute(sqltbl1)
+    cur.execute( sqltbl1 )
 
     # sqltbl2 =
     # cur.execute(sqltbl2)
