@@ -40,7 +40,7 @@ def test_query_one():
           stat text,
           population real,
           latitude real,
-          longitude real,
+          longitude real
         );
     '''
     cur.execute(sqltbl1)
