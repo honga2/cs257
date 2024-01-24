@@ -74,15 +74,26 @@ def test_query_all():
     conn = psycopg2.connect(
         host="localhost",
         port=5432,
-        database="mlepinski",
-        user="mlepinski",
-        password="puppy837spoon")
+        database="honga2",
+        user="honga2",
+        password="lion587smile")
 
     cur = conn.cursor()
 
-    sql = "SELECT name, abb FROM states"
+    sqltbl1 = '''
+        DROP TABLE IF EXISTS uscities;
+        CREATE TABLE uscities (
+          city text,
+          stat text,
+          population real,
+          latitude real,
+          longitude real
+        );
+    '''
+    cur.execute(sqltbl1)
 
-    cur.execute( sql )
+    # sqltbl2 =
+    # cur.execute(sqltbl2)
 
     # fetchall() returns a list containing all rows that matches your query
     row_list = cur.fetchall()
@@ -133,9 +144,9 @@ def test_query_variable():
 
     return None
 
-print( test_query_one() )
+# print( test_query_one() )
 
-# test_query_all()
+test_query_all()
 
 # test_query_variable()
 
