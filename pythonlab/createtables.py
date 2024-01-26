@@ -146,7 +146,7 @@ def test_query_variable():
 
 # print( test_query_one() )
 
-test_query_all()
+create_tables()
 
 # test_query_variable()
 
