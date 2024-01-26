@@ -36,7 +36,7 @@ def create_tables():
         CREATE TABLE uscities (
           city text,
           stat text,
-          population real,
+          population int,
           latitude real,
           longitude real
         ); '''
