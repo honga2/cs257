@@ -88,8 +88,8 @@ def test_query_all():
           population real,
           latitude real,
           longitude real
-        );
-    '''
+        ); '''
+
     cur.execute( sqltbl1 )
 
     # sqltbl2 =
