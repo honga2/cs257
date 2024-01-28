@@ -2,6 +2,7 @@
 # This library is already installed on stearns.mathcs.carleton.edu
 import psycopg2
 
+
 # This function tests to make sure that you can connect to the database
 def test_connection():
 
@@ -40,11 +41,15 @@ def create_tables():
           latitude real,
           longitude real
         ); '''
-
     cur.execute( sqltbl1 )
 
-    # sqltbl2 =
-    # cur.execute(sqltbl2)
+    sqltbl2 = '''
+        DROP TABLE IF EXISTS states;
+        CREATE TABLE states (
+          state text,
+          abbreviation text,
+        ); '''
+    cur.execute( sqltbl2 )
 
     conn.commit()
 
@@ -52,4 +57,3 @@ def create_tables():
 
 
 create_tables()
-
