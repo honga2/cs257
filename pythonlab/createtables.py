@@ -47,7 +47,7 @@ def create_tables():
         DROP TABLE IF EXISTS states;
         CREATE TABLE states (
           state text,
-          abbreviation text,
+          abbreviation text
         ); '''
     cur.execute( sqltbl2 )
 
