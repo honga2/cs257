@@ -38,7 +38,20 @@ def query():
         cur.execute(northfield)
         conn.commit()
     except:
-        print( "\'Northfield\' was not found in the database" )
+        print("\'Northfield\' was not found in the database")
+
+    commands = [
+        '''
+        SELECT city FROM uscities WHERE population = MAX(population);
+        '''
+    ]
+
+    try:
+        for _ in commands:
+            cur.execute(_)
+        conn.commit()
+    except:
+        print("Something went wrong... Please verify that your query is valid.")
 
     return None
 
