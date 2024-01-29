@@ -32,7 +32,7 @@ def query():
 
     cur = conn.cursor()
 
-    northfield = "SELECT longitude AND latitude FROM uscities WHERE city = Northfield;"
+    northfield = "SELECT longitude AND latitude FROM uscities WHERE city = Chicago;"
 
     try:
         cur.execute(northfield)
