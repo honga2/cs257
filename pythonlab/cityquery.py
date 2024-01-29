@@ -53,6 +53,9 @@ def query():
         conn.commit()
     except:
         print("Something went wrong... Please verify that your query is valid.")
+    finally:
+        cur.close()
+        conn.close()
 
     return None
 
