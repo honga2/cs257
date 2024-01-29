@@ -36,7 +36,7 @@ def create_tables():
         DROP TABLE IF EXISTS uscities;
         CREATE TABLE uscities (
           city text,
-          stat text,
+          state text,
           population int,
           latitude real,
           longitude real
