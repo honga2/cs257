@@ -40,25 +40,69 @@ def query():
     except:
         print("\'Northfield\' was not found in the database")
 
-    commands = [
+    basic_commands = [
+        # max population in US
         '''
-        SELECT city FROM uscities WHERE population = (SELECT MAX(population)
-                                                      FROM uscities);
+        SELECT city
+        FROM uscities
+        WHERE population = (SELECT
+                            MAX(population)
+                            FROM uscities);
+        ''',
+        # min population in MN
+        '''
+        SELECT city
+        FROM uscities
+        WHERE population = (SELECT
+                            MIN(population)
+                            FROM uscities
+                            WHERE state = 'Minnesota');
+        ''',
+        # furthest north
+        '''
+        SELECT city
+        FROM uscities
+        WHERE latitude = (SELECT
+                          MAX(latitude)
+                          FROM uscities);
+        ''',
+        # furthest south
+        '''
+        SELECT city
+        FROM uscities
+        WHERE latitude = (SELECT
+                          MIN(latitude)
+                          FROM uscities);
+        ''',
+        # furthest east
+        '''
+        SELECT city
+        FROM uscities
+        WHERE longitude = (SELECT
+                           MAX(longitude)
+                           FROM uscities);
+        ''',
+        # furthest west
+        '''
+        SELECT city
+        FROM uscities
+        WHERE longitude = (SELECT
+                           MIN(longitude)
+                           FROM uscities);
         ''',
     ]
 
     try:
-        for _ in commands:
+        for _ in basic_commands:
             cur.execute(_)
         conn.commit()
     except:
         print("Something went wrong... Please verify that your query is valid.")
-    finally:
-        cur.close()
-        conn.close()
+
+    state = input("Please enter a state:")
 
     return None
 
-
-query()
+if __name__ == "__main__":
+    query()
 
