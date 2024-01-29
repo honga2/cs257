@@ -32,7 +32,7 @@ def query():
 
     cur = conn.cursor()
 
-    northfield = "SELECT longitude, latitude FROM uscities WHERE city = 'Chicago';"
+    northfield = "SELECT longitude, latitude FROM uscities WHERE city = 'Northfield';"
 
     try:
         cur.execute(northfield)
@@ -42,8 +42,9 @@ def query():
 
     commands = [
         '''
-        SELECT city FROM uscities WHERE population = MAX(population);
-        '''
+        SELECT city FROM uscities WHERE population = (SELECT MAX(population)
+                                                      FROM uscities);
+        ''',
     ]
 
     try:
