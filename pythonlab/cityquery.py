@@ -110,15 +110,10 @@ def states(input):
         exit()
 
     if len(input) == 2:
-        cur.execute("SELECT state FROM states WHERE abbreviation = {input}")
+        cur.execute("SELECT state FROM states WHERE abbreviation = ?", (input))
         result = cur.fetchone()
 
-        pops = '''
-            SELECT population
-            FROM uscities
-            WHERE city = {result};
-        '''
-        cur.execute(pops)
+        cur.execute("SELECT population FROM uscities WHERE city = ?", (result))
         result2 = cur.fetchall()
         for row in result2:
             print(row[1])
