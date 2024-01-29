@@ -3,9 +3,8 @@
 import psycopg2
 
 
-# This function tests to make sure that you can connect to the database
-def test_connection():
-
+# Connects to the database
+def connect():
     conn = psycopg2.connect(
         host="localhost",
         port=5432,
@@ -13,27 +12,27 @@ def test_connection():
         user="honga2",
         password="lion587smile")
 
-    if conn is not None:
-        print( "Connection Worked!" )
+    if conn != None:
+        return conn
     else:
-        print( "Problem with Connection" )
+        print("There was a problem connecting to the database")
 
-    return None
 
 # This function sends a query that creates the two tables for the lab
 def query():
+    conn = connect()
 
-    conn = psycopg2.connect(
-        host="localhost",
-        port=5432,
-        database="honga2",
-        user="honga2",
-        password="lion587smile")
+    if conn != None:
+        cur = conn.cursor()
+    else:
+        print("There was a problem connecting to the database")
+        exit()
 
-    cur = conn.cursor()
-
-    northfield = "SELECT longitude, latitude FROM uscities WHERE city = 'Northfield';"
-
+    northfield = '''
+        SELECT longitude, latitude
+        FROM uscities
+        WHERE city = 'Northfield';
+        '''
     try:
         cur.execute(northfield)
         conn.commit()
@@ -99,10 +98,34 @@ def query():
     except:
         print("Something went wrong... Please verify that your query is valid.")
 
-    state = input("Please enter a state:")
-
     return None
+
+def states(input):
+    conn = connect()
+
+    if conn != None:
+        cur = conn.cursor()
+    else:
+        print("There was a problem connecting to the database")
+        exit()
+
+    if len(input) == 2:
+        cur.execute("SELECT state FROM states WHERE abbreviation = (input)")
+        result = cur.fetchone()
+
+        pops = '''
+            SELECT population
+            FROM uscities
+            WHERE city = (result);
+        '''
+
+        result2 = cur.fetchall()
+        for row in result2:
+            print(row[1])
+
 
 if __name__ == "__main__":
     query()
+    input = input("Enter a state: ")
+    states(input)
 
