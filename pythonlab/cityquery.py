@@ -33,14 +33,15 @@ def query():
         FROM uscities
         WHERE city = 'Northfield';
         '''
-    try:
-        cur.execute(northfield)
-        result = cur.fetchone()
-        if result:
-            print(result)
-        conn.commit()
-    except:
+
+    cur.execute(northfield)
+    result = cur.fetchone()
+    if result is not None:
+        print(result)
+    else:
         print("\'Northfield\' was not found in the database")
+
+    conn.commit()
 
     basic_commands = [
         # max population in US
