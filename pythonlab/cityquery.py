@@ -110,16 +110,18 @@ def states(input):
         exit()
 
     if len(input) == 2:
-        sql1 = "SELECT state FROM states WHERE abbreviation = ?"
-        cur.execute(sql1, (input,))
+        sql1 = "SELECT state FROM states WHERE abbreviation = %s"
+        cur.execute(sql1, [input,])
         result = cur.fetchone()
 
-        sql2 = "SELECT population FROM uscities WHERE city = ?"
-        cur.execute(sql2, (result,))
-        result2 = cur.fetchall()
-        for row in result2:
-            print(row[1])
+        sql2 = "SELECT population FROM uscities WHERE city = %s"
+        cur.execute(sql2, [result,])
+        row_list = cur.fetchall()
+        for row in row_list:
+            print(row)
 
+        #NOTES: need to figure out how to use user input in a query. also need
+        # to figure out how to print results
 
 if __name__ == "__main__":
     query()
