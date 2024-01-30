@@ -36,7 +36,8 @@ def query():
     try:
         cur.execute(northfield)
         result = cur.fetchone()
-        print(result)
+        if result:
+            print(result)
         conn.commit()
     except:
         print("\'Northfield\' was not found in the database")
