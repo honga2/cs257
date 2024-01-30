@@ -125,7 +125,9 @@ def states_data(state):
             population = cur.fetchone()
             pops.append(population)
 
-        print(pops)
+        # print(pops)
+        for _ in pops:
+            print(pops)
 
 
 if __name__ == "__main__":
