@@ -118,9 +118,9 @@ def states_data(state):
         abbreviation = cur.fetchone()
         cur.execute(get_cities, [abbreviation])
         cities = cur.fetchall()
-
-    cur.execute(get_cities, [state])
-    cities = cur.fetchall()
+    else:
+        cur.execute(get_cities, [state])
+        cities = cur.fetchall()
 
     if cities is None:
         print("Invalid state.")
