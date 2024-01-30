@@ -100,7 +100,7 @@ def query():
 
     return None
 
-def states(input):
+def states_data(state):
     conn = connect()
 
     if conn != None:
@@ -111,20 +111,25 @@ def states(input):
 
     if len(input) == 2:
         sql1 = "SELECT state FROM states WHERE abbreviation = %s"
-        cur.execute(sql1, [input])
-        result = cur.fetchone()
+        cur.execute(sql1, [state])
+        abbreviation = cur.fetchone()
 
-        sql2 = "SELECT population FROM uscities WHERE state = %s"
-        cur.execute(sql2, [result])
-        row_list = cur.fetchall()
-        for row in row_list:
-            print(row)
+        sql3 = "SELECT city FROM uscities WHERE state = %s"
+        cur.execute(sql3, [abbreviation])
+        cities = cur.fetchall()
 
-        #NOTES: need to figure out how to use user input in a query. also need
-        # to figure out how to print results
+        pops = []
+        for city in cities:
+            sql2 = "SELECT population FROM uscities WHERE city = %s"
+            cur.execute(sql2, [city])
+            population = cur.fetchone()
+            pops.append(population)
+
+        print(pops)
+
 
 if __name__ == "__main__":
     query()
-    input = input("Enter a state: ")
-    states(input)
+    state = input("Enter a state: ")
+    states_data(state)
 
