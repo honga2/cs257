@@ -149,7 +149,6 @@ def states_data(state):
     return None
 
 
-
 if __name__ == "__main__":
     query()
     state = input("Enter a state: ")
