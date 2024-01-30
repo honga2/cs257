@@ -115,7 +115,7 @@ def states(input):
         result = cur.fetchone()
 
         sql2 = "SELECT population FROM uscities WHERE state = %s"
-        cur.execute(sql2, [result,])
+        cur.execute(sql2, [result])
         row_list = cur.fetchall()
         for row in row_list:
             print(row)
