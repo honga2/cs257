@@ -127,7 +127,7 @@ def states_data(state):
 
         # print(pops)
         for _ in pops:
-            print(pops)
+            print(_)
 
 
 if __name__ == "__main__":
