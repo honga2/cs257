@@ -109,7 +109,7 @@ def states_data(state):
         print("There was a problem connecting to the database")
         exit()
 
-    if len(input) == 2:
+    if len(state) == 2:
         sql1 = "SELECT state FROM states WHERE abbreviation = %s"
         cur.execute(sql1, [state])
         abbreviation = cur.fetchone()
