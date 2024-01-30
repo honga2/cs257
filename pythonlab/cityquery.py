@@ -111,7 +111,8 @@ def states(input):
 
     if len(input) == 2:
         sql1 = "SELECT state FROM states WHERE abbreviation = %s"
-        state_abb = input
+        state_abb = ('%s', input)
+        print(state_abb)
         cur.execute(sql1, [input,])
         result = cur.fetchone()
 
