@@ -122,7 +122,7 @@ def states_data(state):
     cur.execute(get_cities, [state])
     cities = cur.fetchall()
 
-    if not cities:
+    if cities is None:
         print("Invalid state.")
         exit()
 
