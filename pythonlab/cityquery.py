@@ -109,25 +109,32 @@ def states_data(state):
         print("There was a problem connecting to the database")
         exit()
 
+    abbreviation = None
+    get_abbr = "SELECT state FROM states WHERE abbreviation = %s"
+    cities = None
+    get_cities = "SELECT city FROM uscities WHERE state = %s"
     if len(state) == 2:
-        sql1 = "SELECT state FROM states WHERE abbreviation = %s"
-        cur.execute(sql1, [state])
+        cur.execute(get_abbr, [state])
         abbreviation = cur.fetchone()
-
-        sql3 = "SELECT city FROM uscities WHERE state = %s"
-        cur.execute(sql3, [abbreviation])
+        cur.execute(get_cities, [abbreviation])
         cities = cur.fetchall()
 
-        pops = []
-        for city in cities:
-            sql2 = "SELECT population FROM uscities WHERE city = %s"
-            cur.execute(sql2, [city])
-            population = cur.fetchone()
-            pops.append(population)
+    cur.execute(get_cities, [state])
+    cities = cur.fetchall()
 
-        # print(pops)
-        for _ in pops:
-            print(_)
+    if not cities:
+        print("Invalid state.")
+        exit()
+
+    pops = []
+    for city in cities:
+        get_pop = "SELECT population FROM uscities WHERE city = %s"
+        cur.execute(get_pop, [city])
+        population = cur.fetchone()
+        pops.append(population)
+
+    for _ in pops:
+        print(_)
 
 
 if __name__ == "__main__":
