@@ -41,9 +41,7 @@ def query():
     else:
         print("\'Northfield\' was not found in the database")
 
-    conn.commit()
-
-    basic_commands = [
+    commands = [
         # max population in US
         '''
         SELECT city
@@ -95,14 +93,21 @@ def query():
         ''',
     ]
 
-    try:
-        for _ in basic_commands:
-            cur.execute(_)
-        conn.commit()
-    except:
+    if commands is None:
         print("Something went wrong... Please verify that your query is valid.")
 
+    results = []
+    for _ in commands:
+        cur.execute(_)
+        r = cur.fetchall()
+        results.append(r)
+
+    for _ in results:
+        print(_)
+
+    conn.commit()
     return None
+
 
 def states_data(state):
     conn = connect()
@@ -139,6 +144,10 @@ def states_data(state):
 
     for _ in pops:
         print(_)
+
+    conn.commit()
+    return None
+
 
 
 if __name__ == "__main__":
