@@ -123,9 +123,9 @@ def states_data(state):
     cities = None
     get_cities = "SELECT city FROM uscities WHERE state = %s"
     if len(state) == 2:
-        cur.execute(get_abbr, [state])
+        cur.execute(get_abbr, state)
         abbreviation = cur.fetchone()
-        cur.execute(get_cities, [abbreviation])
+        cur.execute(get_cities, abbreviation)
         cities = cur.fetchall()
     else:
         cur.execute(get_cities, [state])
