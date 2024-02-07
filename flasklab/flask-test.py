@@ -22,8 +22,8 @@ def my_color(word1):
 
 @app.route('/add/<num1>/<num2>')
 def add(num1, num2):
-    sum = num1+num2
-    print_sum = "The sum is: " + sum;
+    sum = int(num1) + int(num2)
+    print_sum = "The sum is: ", sum
     return print_sum
 
 
