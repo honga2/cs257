@@ -18,6 +18,16 @@ def rand(low, high):
     num = random.randint(low_int, high_int)
     return render_template("random.html", randNum = num)
 
+@app.route('/sentence')
+def sentence():
+    names = ['Olivia', 'Noah', 'Emma', 'Lucy', 'Liam', 'Michael', 'Julia', 'Joanne']
+    adjectives = ['Brave', 'Wise', 'Hungry', 'Sleepy', 'Adventurous']
+
+    name = random.choice(names)
+    adjective = random.choice(adjectives)
+    num = random.randint(1000, 2024)
+    return render_template("button.html", randName = name, randAdj = adjective, randNum = num)
+
 if __name__ == '__main__':
     my_port = 5109
     app.run(host='0.0.0.0', port = my_port)
