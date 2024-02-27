@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../static/home.css">
+
+    <title>Andrew's CSS Lab</title>
+</head>
+
+<body>
+    <header>
+        <h1 style="text-align:center;color: #fbf1c7;font-size: 300%;">
+            CSS Lab Part 2, by Andrew Hong
+        </h1>
+
+        <p style="text-align:center;color: #fbf1c7;">
+            This website showcases Andrew's CSS Lab.
+        </p>
+    </header>
+
+    <main>
+        <img src="../static/images/goggles1.jpg" class="center" id="home_image">
+
+        <div onmouseover="hiddenText()">
+            <p style="text-align:center;color: #282828;" id="hidden">
+                Shhh! Here's some hidden text!
+            </p>
+        </div>
+
+        <p>
+            <button onclick="changeImage()" class="center">
+                Click for a surprise!
+            </button>
+        </p>
+    </main>
+
+    <script src="../static/home.js"> </script>
+</body>
+
+</html>
